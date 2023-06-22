@@ -2,7 +2,18 @@
 
 for(var i=0;i<document.querySelectorAll(".drum").length;i++){
 document.querySelectorAll("button")[i].addEventListener("click",function(){
-  var butt=this.innerHTML;
+    var butt=this.innerHTML;
+    make(butt);
+    anim(butt);
+        
+});
+}
+ document.addEventListener("keypress",function(event){
+     make(event.key);
+     anim(event.key);
+ })
+ function make(butt){
+   
     switch(butt){
         case "w":
             var audiow =new Audio("sounds/crash.mp3");
@@ -25,6 +36,11 @@ document.querySelectorAll("button")[i].addEventListener("click",function(){
       
         default:console.log.apply("error");        
     }
-        
-});
-}
+ }
+ function anim(butt){
+    var bu=document.querySelector("."+butt);
+    bu.classList.add("pressed");
+    setTimeout(function(){
+        bu.classList.remove("pressed");
+    },100);
+ }
